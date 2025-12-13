@@ -1,26 +1,22 @@
-# Use the official Nginx Alpine image (very stable)
-FROM nginx:alpine
+# upload image 
+# Update all packages 
+#install utilities CURL, NGINX,ZIP
+#Set nginx to run foreground 
+#
 
-# Install tools
-RUN apk add --no-cache curl unzip
+FROM ubuntu:22.04
 
-# Go to the Nginx standard directory
-WORKDIR /usr/share/nginx/html
+RUN apt-get update && apt-get install -y curl nginx zip 
 
-# Clear existing default files
-RUN rm -rf ./*
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf 
 
-# Download the game
-RUN curl -o master.zip -L https://github.com/gabrielecirulli/2048/archive/master.zip
+RUN curl -o /var/www/html/master.zip -L https://github.com/gabrielecirulli/2048/archive/master.zip
 
-# Unzip and move to current folder
-RUN unzip master.zip && mv 2048-master/* . && rm -rf 2048-master master.zip
+RUN cd /var/www/html && unzip master.zip && mv 2048-master/* . && rm -rf 2048-master master.zip 
 
-# --- THE CRITICAL FIX ---
-# Grant Read Permissions to EVERYONE so Nginx can definitely read the files
-RUN chmod -R 755 /usr/share/nginx/html
-# ------------------------
+RUN mkdir -p /usr/share/nginx/html && cp -r /var/www/html/* /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 80 
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/usr/sbin/nginx", "-c", "/etc/nginx/nginx.conf"]
+
