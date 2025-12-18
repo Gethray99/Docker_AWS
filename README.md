@@ -67,7 +67,7 @@ Access locally at: http://localhost:8080
 To avoid AWS charges, destroy the infrastructure when finished:
 
 Bash
-$ terraform destroy
+>terraform destroy
 
 💡 Key Learnings & Troubleshooting
 Docker & Nginx: Switched from ubuntu base image to nginx:alpine for a smaller footprint and better security.
