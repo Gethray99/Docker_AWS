@@ -43,7 +43,7 @@ data "aws_elastic_beanstalk_solution_stack" "docker"{
 resource "aws_elastic_beanstalk_environment" "game_env" {
   name = "2048-game-env"
   application = aws_elastic_beanstalk_application.game-app.name
-  solution_stack_name = aws_elastic_beanstalk_solution_stack.docker.name
+  solution_stack_name = data.aws_elastic_beanstalk_solution_stack.docker.name
   version_label = aws_elastic_beanstalk_application_version.game_version.name
 
 setting {
