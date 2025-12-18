@@ -56,7 +56,7 @@ Click the link to play the game live on the internet!
 If you want to run the game locally on your machine before deploying:
 
 Bash
-> # Build the image
+# Build the image
 docker build -t 2048-game .
 
 # Run container (Mapped to port 8080 to avoid Mac port conflicts)
@@ -67,7 +67,7 @@ Access locally at: http://localhost:8080
 To avoid AWS charges, destroy the infrastructure when finished:
 
 Bash
-> terraform destroy
+$ terraform destroy
 
 💡 Key Learnings & Troubleshooting
 Docker & Nginx: Switched from ubuntu base image to nginx:alpine for a smaller footprint and better security.
