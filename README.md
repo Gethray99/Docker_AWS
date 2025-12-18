@@ -32,13 +32,13 @@ Plaintext
 Download the required AWS providers.
 
 Bash
-terraform init
+> terraform init
 2. Plan and Apply
 
 Review the infrastructure plan and deploy to AWS.
 
 Bash
-terraform apply
+> terraform apply
 Type yes when prompted.
 
 3. Access the Game
@@ -46,7 +46,7 @@ Type yes when prompted.
 Once deployment finishes (approx. 5 mins), Terraform will output the live URL:
 
 Bash
-Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+> Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
 
 Outputs:
 game_url = "http://2048-game-env.eba-xxxx.us-east-1.elasticbeanstalk.com"
@@ -56,7 +56,7 @@ Click the link to play the game live on the internet!
 If you want to run the game locally on your machine before deploying:
 
 Bash
-# Build the image
+> # Build the image
 docker build -t 2048-game .
 
 # Run container (Mapped to port 8080 to avoid Mac port conflicts)
@@ -67,7 +67,7 @@ Access locally at: http://localhost:8080
 To avoid AWS charges, destroy the infrastructure when finished:
 
 Bash
-terraform destroy
+> terraform destroy
 
 💡 Key Learnings & Troubleshooting
 Docker & Nginx: Switched from ubuntu base image to nginx:alpine for a smaller footprint and better security.
